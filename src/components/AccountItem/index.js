@@ -5,20 +5,16 @@ import styles from './AccountItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ avarta, name, userName }) {
   return (
     <div className={cx('wrapper')}>
-      <img
-        className={cx('avarta')}
-        src="https://twinfinite.net/wp-content/uploads/2022/09/EdgerunnersLucy.jpg"
-        alt="lucy"
-      />
+      <img className={cx('avarta')} src={avarta} alt="lucy" />
       <div className={cx('info')}>
         <h4 className={cx('name')}>
-          <span>Lucyna Kushinada</span>
+          <span>{name}</span>
           <FontAwesomeIcon className={cx('icon')} icon={faCheckCircle} />
         </h4>
-        <span className={cx('username')}>Lucy</span>
+        <span className={cx('username')}>{userName}</span>
       </div>
     </div>
   );

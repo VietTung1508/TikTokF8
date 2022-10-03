@@ -2,18 +2,20 @@ import styles from './Header.module.scss';
 import { useState, useEffect } from 'react';
 import className from 'classnames/bind';
 // import Tippy from '@tippyjs/react';
+// import Tippy from '@tippyjs/react';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleXmark,
   faEllipsisVertical,
+  faLanguage,
   faMagnifyingGlass,
   faPlus,
   faSignIn,
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import { faPaperPlane, faMessage } from '@fortawesome/free-regular-svg-icons';
+import { faPaperPlane, faMessage, faCircleQuestion, faKeyboard } from '@fortawesome/free-regular-svg-icons';
 import { Wrapper as PopperWrapper } from '../../../Popper/index';
 import AccountItem from '../../../AccountItem/index';
 import { Link } from 'react-router-dom';
@@ -117,10 +119,29 @@ function Header() {
               <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                 <PopperWrapper>
                   <h4 className={cx('search-title')}>Accounts</h4>
-                  <AccountItem />
-                  <AccountItem />
-                  <AccountItem />
-                  <AccountItem />
+                  <AccountItem
+                    avarta={'https://c.tenor.com/EX3e82-9sHkAAAAd/cyberpunk-cyberpunk-anime.gif'}
+                    // avarta={'https://twinfinite.net/wp-content/uploads/2022/09/EdgerunnersLucy.jpg'}
+                    name={'Lucyna Kushinada'}
+                    userName={'Lucy'}
+                  />
+                  <AccountItem
+                    avarta={
+                      'https://www.kakuchopurei.com/wp-content/uploads/2022/09/cyberpunkedgerunners_featreview.jpg'
+                    }
+                    name={'David Martinez'}
+                    userName={'David'}
+                  />
+                  <AccountItem
+                    avarta={'https://c.tenor.com/_CRKecwFC4kAAAAC/cyberpunk-edgerunners-rebecca.gif'}
+                    name={'Rebeca'}
+                    userName={'Re'}
+                  />
+                  <AccountItem
+                    avarta={'https://c.tenor.com/6iA7otT2zz8AAAAd/komi-komi-shouko.gif'}
+                    name={'Komi Shoko'}
+                    userName={'Komi'}
+                  />
                 </PopperWrapper>
               </div>
             );
@@ -162,12 +183,39 @@ function Header() {
             </Tippy>
           </Link> */}
         {/* </div> */}
+
         <div className={cx('loginAction')}>
           <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
             Upload
           </Button>
-          <Button primary>Log in</Button>
-          <FontAwesomeIcon icon={faEllipsisVertical} />
+
+          <span className={cx('log')}>
+            <Button primary>Log in</Button>
+          </span>
+          <Tippy
+            interactive={true}
+            visible={searchResult.length > 0}
+            render={(attrs) => (
+              <div className={cx('menu')} tabIndex="-1" {...attrs}>
+                <PopperWrapper>
+                  <div className={cx('language')}>
+                    <FontAwesomeIcon className={cx('icon')} icon={faLanguage} />
+                    <span>English</span>
+                  </div>
+                  <div className={cx('help')}>
+                    <FontAwesomeIcon className={cx('icon')} icon={faCircleQuestion} />
+                    <span>Feedback and help</span>
+                  </div>
+                  <div className={cx('keyboard')}>
+                    <FontAwesomeIcon className={cx('icon')} icon={faKeyboard} />
+                    <span>Keyboard shortcuts</span>
+                  </div>
+                </PopperWrapper>
+              </div>
+            )}
+          >
+            <FontAwesomeIcon icon={faEllipsisVertical} />
+          </Tippy>
         </div>
       </div>
     </header>

@@ -128,7 +128,30 @@
 
 .loginAction {
   width: 273px;
-  // display: flex;
-  // justify-content: space-around;
-  // align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.menu {
+  width: 223px;
+}
+
+.language,
+.help,
+.keyboard {
+  padding: 10px 8px 10px 16px;
+  font-weight: 400;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.keyboard {
+  padding-bottom: 8px;
+}
+
+.icon {
+  padding-right: 10px;
 }
