@@ -1,5 +1,5 @@
-import styles from './Header.module.scss';
 import { useState, useEffect } from 'react';
+import styles from './Header.module.scss';
 import className from 'classnames/bind';
 // import Tippy from '@tippyjs/react';
 // import Tippy from '@tippyjs/react';
@@ -20,7 +20,28 @@ import { Wrapper as PopperWrapper } from '../../../Popper/index';
 import AccountItem from '../../../AccountItem/index';
 import { Link } from 'react-router-dom';
 import Button from '../../../Button/index';
+import Menu from '../../../Popper/Menu/index';
+
 const cx = className.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: faLanguage,
+    title: 'English',
+    class: 'language',
+  },
+  {
+    icon: faCircleQuestion,
+    title: 'Feedback and help',
+    to: '/feedback',
+    class: 'help',
+  },
+  {
+    icon: faKeyboard,
+    title: 'Keyboard shortcuts',
+    class: 'key',
+  },
+];
 
 console.log(cx);
 console.log(styles);
@@ -192,30 +213,11 @@ function Header() {
           <span className={cx('log')}>
             <Button primary>Log in</Button>
           </span>
-          <Tippy
-            interactive={true}
-            visible={searchResult.length > 0}
-            render={(attrs) => (
-              <div className={cx('menu')} tabIndex="-1" {...attrs}>
-                <PopperWrapper>
-                  <div className={cx('language')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faLanguage} />
-                    <span>English</span>
-                  </div>
-                  <div className={cx('help')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faCircleQuestion} />
-                    <span>Feedback and help</span>
-                  </div>
-                  <div className={cx('keyboard')}>
-                    <FontAwesomeIcon className={cx('icon')} icon={faKeyboard} />
-                    <span>Keyboard shortcuts</span>
-                  </div>
-                </PopperWrapper>
-              </div>
-            )}
-          >
-            <FontAwesomeIcon icon={faEllipsisVertical} />
-          </Tippy>
+          <Menu items={MENU_ITEMS}>
+            <button className={cx('more-btn')}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>
