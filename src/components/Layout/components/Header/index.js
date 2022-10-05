@@ -21,25 +21,23 @@ import AccountItem from '../../../AccountItem/index';
 import { Link } from 'react-router-dom';
 import Button from '../../../Button/index';
 import Menu from '../../../Popper/Menu/index';
+import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
 
 const cx = className.bind(styles);
 
 const MENU_ITEMS = [
   {
-    icon: faLanguage,
+    icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
-    class: 'language',
   },
   {
-    icon: faCircleQuestion,
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
     title: 'Feedback and help',
     to: '/feedback',
-    class: 'help',
   },
   {
-    icon: faKeyboard,
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
     title: 'Keyboard shortcuts',
-    class: 'key',
   },
 ];
 

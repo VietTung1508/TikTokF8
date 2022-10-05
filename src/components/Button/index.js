@@ -5,20 +5,21 @@ import { Link } from 'react-router-dom';
 const cx = className.bind(styles);
 
 function Button({
-  children,
-  primary = false,
   to,
   href,
-  onClick,
-  passProps,
+  primary = false,
   outline = false,
+  text = false,
+  rounded = false,
+  disabled = false,
   small = false,
   large = false,
-  text = false,
-  disabled = false,
-  rounded = false,
-  rightIcon,
+  children,
+  className,
   leftIcon,
+  rightIcon,
+  onClick,
+  ...passProps
 }) {
   let Comp = 'button';
   const props = {
@@ -26,8 +27,13 @@ function Button({
     ...passProps,
   };
 
+  // Remove event listener when btn is disabled
   if (disabled) {
-    delete props.onClick;
+    Object.keys(props).forEach((key) => {
+      if (key.startsWith('on') && typeof props[key] === 'function') {
+        delete props[key];
+      }
+    });
   }
 
   if (to) {
@@ -39,13 +45,14 @@ function Button({
   }
 
   const classes = cx('wrapper', {
+    [className]: className,
     primary,
     outline,
-    small,
-    large,
     text,
     disabled,
     rounded,
+    small,
+    large,
   });
 
   return (

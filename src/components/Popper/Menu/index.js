@@ -1,34 +1,25 @@
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import styles from './Menu.module.scss';
-import className from 'classnames/bind';
+import classNames from 'classnames/bind';
 import { Wrapper as Wrapper } from '../index';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLanguage } from '@fortawesome/free-solid-svg-icons';
-import { faCircleQuestion, faKeyboard } from '@fortawesome/free-regular-svg-icons';
+import MenuItem from './MenuItems';
 
-const cx = className.bind(styles);
+const cx = classNames.bind(styles);
 
 function Menu({ children, items = [] }) {
-  const renderItem = () => {
-    return items.map((item, i) => (
-      <div key={i} className={cx(item.class)}>
-        <FontAwesomeIcon className={cx('icon')} icon={item.icon} />
-        <span>{item.title}</span>
-      </div>
-    ));
+  const renderItems = () => {
+    return items.map((item, index) => <MenuItem key={index} data={item} />);
   };
 
   return (
     <Tippy
-      arrtow={true}
-      interactive={true}
-      delay={[0, 1000]}
-      duration={[]}
+      interactive
+      delay={[0, 700]}
       placement="bottom-end"
       render={(attrs) => (
-        <div className={cx('menu')} tabIndex="-1" {...attrs}>
-          <Wrapper>{renderItem()}</Wrapper>
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+          <Wrapper className={cx('menu-popper')}>{renderItems()}</Wrapper>
         </div>
       )}
     >
