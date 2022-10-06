@@ -40,3 +40,20 @@ a[href] {
   color: var(--text-color);
   text-decoration: none;
 }
+
+.tippy-box {
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #fff;
+  background-color: #545454;
+}
+
+.tippy-content {
+  padding: 8px 9px;
+}
+
+.tippy-arrow {
+  background-color: #545454;
+}
