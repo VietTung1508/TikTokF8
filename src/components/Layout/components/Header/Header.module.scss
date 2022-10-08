@@ -109,15 +109,6 @@
   display: none;
 }
 
-// .actions {
-//   display: flex;
-//   align-items: center;
-//   width: 265px;
-//   height: 100%;
-//   display: flex;
-//   justify-content: space-between;
-// }
-
 .userImg {
   width: 32px;
   height: 32px;
@@ -155,4 +146,21 @@
   font-size: 1.8rem;
   padding: 4px 12px;
   cursor: pointer;
+}
+
+.nof {
+  position: relative;
+}
+
+.notification {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(10%, 0%);
+  color: #fff;
+  font-size: 1.2rem;
+  background-color: var(--primary);
+  border-radius: 50%;
+  padding: 1px 5px;
+  text-align: center;
 }

@@ -6,6 +6,7 @@ import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { UploadIcon, MessageIcon, InboxIcon, SearchIcon } from '../../../Icons/index';
 import { Link } from 'react-router-dom';
 import {
   faCircleXmark,
@@ -236,7 +237,7 @@ function Header() {
             </button>
             <FontAwesomeIcon className={cx('spinner')} icon={faSpinner} />
             <button className={cx('btn-Search')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <SearchIcon />
             </button>
           </div>
         </HeadlessTippy>
@@ -246,17 +247,18 @@ function Header() {
             <>
               <Tippy delay={[0, 200]} content={'Upload'}>
                 <button className={cx('icon')}>
-                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                  <UploadIcon className={cx('upload')} />
                 </button>
               </Tippy>
-              <Tippy delay={[0, 200]} content={'Messages'}>
+              <Tippy offset={[0, 12]} delay={[0, 200]} content={'Messages'}>
                 <button className={cx('icon')}>
-                  <FontAwesomeIcon icon={faPaperPlane} />
+                  <MessageIcon className={cx('mess')} />
                 </button>
               </Tippy>
               <Tippy delay={[0, 200]} content={'Inbox'}>
-                <button className={cx('icon')}>
-                  <FontAwesomeIcon icon={faMessage} />
+                <button className={cx('icon', 'nof')}>
+                  <InboxIcon className={cx('inbox')} />
+                  <span className={cx('notification')}>3</span>
                 </button>
               </Tippy>
             </>
