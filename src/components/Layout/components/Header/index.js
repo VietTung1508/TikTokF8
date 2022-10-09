@@ -8,6 +8,7 @@ import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UploadIcon, MessageIcon, InboxIcon, SearchIcon } from '../../../Icons/index';
 import { Link } from 'react-router-dom';
+import Image from '../../../Image/index';
 import {
   faCircleXmark,
   faCloudArrowUp,
@@ -70,7 +71,7 @@ console.log(styles);
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
-  const [inp, setInp] = useState();
+  const [inp, setInp] = useState('');
 
   useEffect(() => {
     setTimeout(() => {
@@ -232,9 +233,11 @@ function Header() {
               spellCheck={false}
             />
 
-            <button className={cx('clear-btn')}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
+            {inp !== '' && (
+              <button className={cx('clear-btn')}>
+                <FontAwesomeIcon icon={faCircleXmark} />
+              </button>
+            )}
             <FontAwesomeIcon className={cx('spinner')} icon={faSpinner} />
             <button className={cx('btn-Search')}>
               <SearchIcon />
@@ -245,22 +248,24 @@ function Header() {
         <div className={cx('loginAction')}>
           {currentUser ? (
             <>
-              <Tippy delay={[0, 200]} content={'Upload'}>
-                <button className={cx('icon')}>
-                  <UploadIcon className={cx('upload')} />
-                </button>
-              </Tippy>
-              <Tippy offset={[0, 12]} delay={[0, 200]} content={'Messages'}>
-                <button className={cx('icon')}>
-                  <MessageIcon className={cx('mess')} />
-                </button>
-              </Tippy>
-              <Tippy delay={[0, 200]} content={'Inbox'}>
-                <button className={cx('icon', 'nof')}>
-                  <InboxIcon className={cx('inbox')} />
-                  <span className={cx('notification')}>3</span>
-                </button>
-              </Tippy>
+              <div className={cx('divIcon')}>
+                <Tippy delay={[0, 200]} content={'Upload'}>
+                  <button className={cx('icon')}>
+                    <UploadIcon className={cx('upload')} />
+                  </button>
+                </Tippy>
+                <Tippy offset={[0, 12]} delay={[0, 200]} content={'Messages'}>
+                  <button className={cx('icon')}>
+                    <MessageIcon className={cx('mess')} />
+                  </button>
+                </Tippy>
+                <Tippy delay={[0, 200]} content={'Inbox'}>
+                  <button className={cx('icon', 'nof')}>
+                    <InboxIcon className={cx('inbox')} />
+                    <span className={cx('notification')}>12</span>
+                  </button>
+                </Tippy>
+              </div>
             </>
           ) : (
             <>
@@ -275,10 +280,10 @@ function Header() {
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
-                className={cx('userImg')}
-                src="https://twinfinite.net/wp-content/uploads/2022/09/EdgerunnersLucy.jpg"
+              <Image
                 alt="userAvarta"
+                src="https://twinfinite.net/wp-content/uploads/2022/09/EdgerunnersLucy.jpg"
+                className={cx('userImg')}
               />
             ) : (
               <button className={cx('more-btn')}>
