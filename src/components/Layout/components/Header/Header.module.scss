@@ -12,11 +12,6 @@
   align-items: center;
 }
 
-.searchBox,
-.search-result {
-  width: 361px;
-}
-
 .logo {
   align-items: center;
 }
@@ -30,83 +25,8 @@
   padding: 0 var(--default-layout-horizontal-spacer);
 }
 
-.searchBox {
-  position: relative;
-  width: 361px;
-  height: var(--search-height);
-  padding-left: 16px;
-  border-radius: var(--search--border-radius);
-  background-color: rgba(22, 24, 35, 0.06);
-  display: flex;
-  border: 1.5px solid transparent;
-
-  input {
-    flex: 1;
-    color: #000;
-    font-size: 1.6rem;
-    background-color: transparent;
-    height: 100%;
-    caret-color: var(--primary);
-  }
-
-  input:not(:placeholder-shown) ~ .btn-Search {
-    color: rgba(22, 24, 35, 0.75);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    height: calc(var(--search-height) - (var(--search-top-spacer) * 2));
-    right: var(--search-button-width);
-    top: var(--search-top-spacer);
-    width: 1px;
-    background-color: rgba(22, 24, 35, 0.12);
-  }
-
-  &:focus-within {
-    border-color: rgba(22, 24, 35, 0.2);
-  }
-}
-
 .container {
   width: 1150px;
-}
-
-.clear-btn {
-  border: none;
-}
-
-.btn-Search {
-  width: var(--search-button-width);
-  height: 100%;
-  border-top-right-radius: var(--search--border-radius);
-  border-bottom-right-radius: var(--search--border-radius);
-  font-size: 1.8rem;
-  color: rgba(22, 24, 35, 0.34);
-
-  &:hover {
-    cursor: pointer;
-    background-color: rgba(22, 24, 35, 0.03);
-  }
-
-  &:active {
-    background-color: rgba(22, 24, 35, 0.06);
-  }
-}
-
-.clear-btn,
-.spinner {
-  position: absolute;
-  right: calc(var(--search-button-width) + 16px);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.4rem;
-  color: rgba(22, 24, 35, 0.34);
-  // display: none;
-}
-
-.spinner {
-  display: none;
 }
 
 .userImg {
@@ -117,13 +37,6 @@
   margin-left: 10px;
   cursor: pointer;
   margin-bottom: 5px;
-}
-
-.search-title {
-  color: rgba(22, 24, 35, 0.5);
-  font-weight: 600;
-  font-size: 1.4rem;
-  padding: 5px 12px;
 }
 
 .loginAction {

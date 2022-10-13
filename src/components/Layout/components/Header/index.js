@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import className from 'classnames/bind';
 import Tippy from '@tippyjs/react';
 // import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
+
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UploadIcon, MessageIcon, InboxIcon, SearchIcon } from '../../../Icons/index';
@@ -21,12 +21,10 @@ import {
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane, faMessage, faCircleQuestion, faKeyboard, faUser } from '@fortawesome/free-regular-svg-icons';
-import { Wrapper as PopperWrapper } from '../../../Popper/index';
-import AccountItem from '../../../AccountItem/index';
-
 import Button from '../../../Button/index';
 import Menu from '../../../Popper/Menu/index';
 import { faEarthAsia } from '@fortawesome/free-solid-svg-icons';
+import Search from '../Search/index';
 
 const cx = className.bind(styles);
 
@@ -70,15 +68,6 @@ console.log(cx);
 console.log(styles);
 
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
-  const [inp, setInp] = useState('');
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult(['lucy', 'David']);
-    }, 0);
-  });
-
   const handleMenuChange = (menuItem) => {
     switch (menuItem.type) {
       case 'language':
@@ -187,63 +176,8 @@ function Header() {
             </defs>
           </svg>
         </div>
-        <HeadlessTippy
-          arrow={false}
-          interactive={true}
-          visible={searchResult.length > 0}
-          render={(attrs) => {
-            return (
-              <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                <PopperWrapper>
-                  <h4 className={cx('search-title')}>Accounts</h4>
-                  <AccountItem
-                    avarta={'https://c.tenor.com/EX3e82-9sHkAAAAd/cyberpunk-cyberpunk-anime.gif'}
-                    // avarta={'https://twinfinite.net/wp-content/uploads/2022/09/EdgerunnersLucy.jpg'}
-                    name={'Lucyna Kushinada'}
-                    userName={'Lucy'}
-                  />
-                  <AccountItem
-                    avarta={
-                      'https://www.kakuchopurei.com/wp-content/uploads/2022/09/cyberpunkedgerunners_featreview.jpg'
-                    }
-                    name={'David Martinez'}
-                    userName={'David'}
-                  />
-                  <AccountItem
-                    avarta={'https://c.tenor.com/_CRKecwFC4kAAAAC/cyberpunk-edgerunners-rebecca.gif'}
-                    name={'Rebeca'}
-                    userName={'Re'}
-                  />
-                  <AccountItem
-                    avarta={'https://c.tenor.com/6iA7otT2zz8AAAAd/komi-komi-shouko.gif'}
-                    name={'Komi Shoko'}
-                    userName={'Komi'}
-                  />
-                </PopperWrapper>
-              </div>
-            );
-          }}
-        >
-          <div className={cx('searchBox')}>
-            <input
-              value={inp}
-              onChange={(e) => setInp(e.target.value)}
-              placeholder="Search accounts and videos"
-              className={cx('search')}
-              spellCheck={false}
-            />
 
-            {inp !== '' && (
-              <button className={cx('clear-btn')}>
-                <FontAwesomeIcon icon={faCircleXmark} />
-              </button>
-            )}
-            <FontAwesomeIcon className={cx('spinner')} icon={faSpinner} />
-            <button className={cx('btn-Search')}>
-              <SearchIcon />
-            </button>
-          </div>
-        </HeadlessTippy>
+        <Search />
 
         <div className={cx('loginAction')}>
           {currentUser ? (
