@@ -45,40 +45,49 @@ function Search() {
     fetchApi();
   }, [debounced]);
 
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+    if (searchValue.startsWith(' ')) {
+      return;
+    }
+    setSearchValue(searchValue);
+  };
+
   const handleHideResult = () => {
     setShowResult(false);
   };
 
   return (
-    <HeadlessTippy
-      arrow={false}
-      interactive={true}
-      visible={showResult && searchResult.length > 0}
-      render={(attrs) => {
-        return (
-          <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-            <PopperWrapper>
-              <h4 className={cx('search-title')}>Accounts</h4>
-              {searchResult.map((result) => {
-                return (
-                  <Link to={`/@${result.nickname}`}>
-                    <AccountItem
-                      data={result}
-                      key={result.id}
-                      avarta={result.avatar}
-                      name={result.full_name}
-                      userName={result.nickname}
-                    />
-                  </Link>
-                );
-              })}
-              {/* <AccountItem
+    <div>
+      <HeadlessTippy
+        arrow={false}
+        interactive={true}
+        visible={showResult && searchResult.length > 0}
+        render={(attrs) => {
+          return (
+            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+              <PopperWrapper>
+                <h4 className={cx('search-title')}>Accounts</h4>
+                {searchResult.map((result, i) => {
+                  return (
+                    <Link to={`/@${result.nickname}`}>
+                      <AccountItem
+                        data={result}
+                        key={i}
+                        avarta={result.avatar}
+                        name={result.full_name}
+                        userName={result.nickname}
+                      />
+                    </Link>
+                  );
+                })}
+                {/* <AccountItem
                 avarta={'https://c.tenor.com/EX3e82-9sHkAAAAd/cyberpunk-cyberpunk-anime.gif'}
                 // avarta={'https://twinfinite.net/wp-content/uploads/2022/09/EdgerunnersLucy.jpg'}
                 name={'Lucyna Kushinada'}
                 userName={'Lucy'}
               /> */}
-              {/* <AccountItem
+                {/* <AccountItem
                 avarta={'https://www.kakuchopurei.com/wp-content/uploads/2022/09/cyberpunkedgerunners_featreview.jpg'}
                 name={'David Martinez'}
                 userName={'David'}
@@ -93,40 +102,46 @@ function Search() {
                 name={'Komi Shoko'}
                 userName={'Komi'}
               /> */}
-            </PopperWrapper>
-          </div>
-        );
-      }}
-      onClickOutside={handleHideResult}
-    >
-      <div className={cx('searchBox')}>
-        <input
-          ref={refInp}
-          value={searchValue.trim()}
-          onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search accounts and videos"
-          className={cx('search')}
-          spellCheck={false}
-          onFocus={() => setShowResult(true)}
-        />
+              </PopperWrapper>
+            </div>
+          );
+        }}
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx('searchBox')}>
+          <input
+            ref={refInp}
+            value={searchValue}
+            onChange={handleChange}
+            placeholder="Search accounts and videos"
+            className={cx('search')}
+            spellCheck={false}
+            onFocus={() => setShowResult(true)}
+          />
 
-        {!!searchValue.trim() && !loading && (
+          {!!searchValue && !loading && (
+            <button
+              className={cx('clear-btn')}
+              onClick={() => {
+                handleDelete();
+              }}
+            >
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
+
+          {loading && <FontAwesomeIcon className={cx('spinner')} icon={faSpinner} />}
           <button
-            className={cx('clear-btn')}
-            onClick={() => {
-              handleDelete();
+            className={cx('btn-Search')}
+            onMouseDown={(e) => {
+              e.preventDefault();
             }}
           >
-            <FontAwesomeIcon icon={faCircleXmark} />
+            <SearchIcon />
           </button>
-        )}
-
-        {loading && <FontAwesomeIcon className={cx('spinner')} icon={faSpinner} />}
-        <button className={cx('btn-Search')}>
-          <SearchIcon />
-        </button>
-      </div>
-    </HeadlessTippy>
+        </div>
+      </HeadlessTippy>
+    </div>
   );
 }
 

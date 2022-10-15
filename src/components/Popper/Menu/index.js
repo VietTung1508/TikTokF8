@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ children, hideOnClick = false, items = [], onChange = defaultFn, ...passProps }) {
   const [history, setHistory] = useState([{ data: items }]);
 
   const current = history[history.length - 1];
@@ -38,6 +38,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
   return (
     <Tippy
       interactive
+      hideOnClick={hideOnClick}
       delay={[0, 700]}
       offset={[15, 8]}
       placement="bottom-end"
@@ -47,7 +48,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             {history.length >= 2 ? (
               <Header title="Languages" onBack={() => setHistory((prev) => prev.slice(0, prev.length - 1))} />
             ) : null}
-            {renderItems()}
+            <div className={cx('menu-body')}>{renderItems()}</div>
           </Wrapper>
         </div>
       )}

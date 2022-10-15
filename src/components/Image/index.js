@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import image from '../../assets/image/index';
 import styles from './image.module.scss';
 import classNames from 'classnames';
 
